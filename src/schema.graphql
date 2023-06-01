@@ -1,0 +1,249 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Attendance {
+  attendance_dat: String!
+  picture: String!
+  time_in: String!
+  time_out: String!
+  user_id: String!
+}
+
+type Auth {
+  """JWT access token"""
+  accessToken: JWT!
+
+  """JWT refresh token"""
+  refreshToken: JWT!
+  user: User!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+input CreateAttendanceInput {
+  attendance_date: String!
+  picture: String!
+  time_in: String!
+  time_out: String!
+  user_id: String!
+}
+
+input CreateCustomerInput {
+  address: String
+  contact_number: String
+  createdBy: String
+  name: String
+  type: String
+}
+
+input CreateDayplanInput {
+  assignedBy: String
+  remarks: String
+  task_details: String
+  task_name: String
+  task_status: String
+  userId: String
+}
+
+input CreateLocationInput {
+  location_latitude: String!
+  location_longitude: String!
+}
+
+input CreateOrderInput {
+  order_amount: Int!
+  order_date: String!
+  productId: Int!
+  retailer_id: Int!
+  user_id: String!
+}
+
+input CreateProductInput {
+  category: String!
+  expDate: String!
+  mfgDate: String!
+  product_name: String!
+  product_price: Int!
+  product_weight: String!
+}
+
+type Customer {
+  address: String
+  contact_number: String
+  createdBy: String
+  name: String
+  type: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Dayplan {
+  assignedBy: String
+  remarks: String!
+  task_details: String!
+  task_name: String!
+  task_status: String!
+}
+
+input FindLocationInput {
+  id: Int!
+  locationEndDate: DateTime!
+  locationStartDate: DateTime!
+}
+
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
+type Location {
+  location_latitude: String!
+  location_longitude: String!
+  user_id: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  changePassword(data: ChangePasswordInput!): User!
+  createAttendance(data: CreateAttendanceInput!): Attendance!
+  createCustomer(data: CreateCustomerInput!): Customer!
+  createDayplan(data: CreateDayplanInput!): Dayplan!
+  createLocation(data: CreateLocationInput!): Location!
+  createOrder(data: CreateOrderInput!): Order!
+  createProduct(data: CreateProductInput!): Product!
+  login(data: LoginInput!): Auth!
+  refreshToken(token: JWT!): Token!
+  removeAttendance(id: Int!): Attendance!
+  removeCustomer(id: Int!): Customer!
+  removeDayplan(id: Int!): Dayplan!
+  removeLocation(id: Int!): Location!
+  removeProduct(id: Int!): Product!
+  signup(data: SignupInput!): Auth!
+  updateAttendance(data: UpdateAttendanceInput!): Attendance!
+  updateCustomer(data: UpdateCustomerInput!): Customer!
+  updateDayplan(data: UpdateDayplanInput!): Dayplan!
+  updateLocation(updateLocationInput: UpdateLocationInput!): Location!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateUser(data: UpdateUserInput!): User!
+}
+
+type Order {
+  order_amount: Int!
+  order_date: String!
+  productId: Int!
+  retailer_id: Int!
+  user_id: String!
+}
+
+type Product {
+  category: String!
+  expDate: String!
+  id: Int!
+  mfgDate: String!
+  product_name: String!
+  product_price: Int!
+  product_weight: String!
+}
+
+type Query {
+  attendance(id: Int!): Attendance!
+  attendances: [Attendance!]!
+  customer(id: Int!): Customer!
+  customers: [Customer!]!
+  dayplan(id: Int!): Dayplan!
+  dayplans: [Dayplan!]!
+  hello(name: String!): String!
+  helloWorld: String!
+  location(data: FindLocationInput!): Location!
+  locations: [Location!]!
+  me: User!
+  product(id: Int!): Product!
+  products: [Product!]!
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+  role: String!
+}
+
+type Token {
+  """JWT access token"""
+  accessToken: JWT!
+
+  """JWT refresh token"""
+  refreshToken: JWT!
+}
+
+input UpdateAttendanceInput {
+  attendance_date: String!
+  id: Int!
+  picture: String!
+  time_in: String!
+  time_out: String!
+  user_id: String
+}
+
+input UpdateCustomerInput {
+  address: String
+  contact_number: String
+  createdBy: String
+  id: Int!
+  name: String
+  type: String
+}
+
+input UpdateDayplanInput {
+  assignedBy: String
+  id: Int!
+  remarks: String!
+  task_details: String!
+  task_name: String!
+  task_status: String!
+  userId: String
+}
+
+input UpdateLocationInput {
+  id: Int!
+  location_latitude: String
+  location_longitude: String
+}
+
+input UpdateProductInput {
+  category: String!
+  expDate: String!
+  id: Int!
+  mfgDate: String!
+  product_name: String!
+  product_price: Int!
+  product_weight: String!
+}
+
+input UpdateUserInput {
+  firstname: String
+  lastname: String
+}
+
+type User {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  email: String!
+  firstname: String
+  id: ID!
+  lastname: String
+  role: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}

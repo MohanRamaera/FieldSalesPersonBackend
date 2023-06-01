@@ -1,0 +1,112 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+model User {
+  id         String       @id @default(cuid())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  email      String       @unique
+  password   String
+  name       String?
+  DayPlan    DayPlan[]
+  orders     Order[]
+  samples    Sample[]
+  location   Location[]
+  role       String
+  Attendance Attendance[]
+}
+
+model Attendance {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user_id         String
+  attendance_date String?
+  time_in         String?
+  time_out        String?
+  picture         String?
+  user            User     @relation(fields: [user_id], references: [id])
+}
+
+model Location {
+  id                 Int      @id @default(autoincrement())
+  user_id            String
+  location_latitude  String
+  location_longitude String
+  timestamp          DateTime @default(now())
+  user               User     @relation(fields: [user_id], references: [id])
+}
+
+model Customer {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  name           String?
+  type           String?
+  createdBy      String?
+  contact_number String?
+  address        String?
+  orders         Order[]
+  samples        Sample[]
+}
+
+model Product {
+  id             Int     @id @default(autoincrement())
+  product_name   String?
+  product_weight String?
+  category       String?
+  product_price  Float?
+  mfgDate        String?
+  expDate        String?
+  order          Order[]
+}
+
+model Order {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  retailer_id  Int
+  user_id      String
+  order_date   DateTime
+  order_amount Float
+  productId    Int
+  product      Product  @relation(fields: [productId], references: [id])
+  customer     Customer @relation(fields: [retailer_id], references: [id])
+  user         User     @relation(fields: [user_id], references: [id])
+}
+
+model Sample {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  customer_id  Int
+  user_id      String
+  sample_date  DateTime
+  product_name String
+  quantity     Int
+  customer     Customer @relation(fields: [customer_id], references: [id])
+  user         User     @relation(fields: [user_id], references: [id])
+}
+
+model DayPlan {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user_id      String
+  task_name    String?
+  task_details String?
+  task_status  String?
+  remarks      String?
+  assigned_by  String?
+  user         User     @relation(fields: [user_id], references: [id])
+}

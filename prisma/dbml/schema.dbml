@@ -1,0 +1,119 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  email String [unique, not null]
+  password String [not null]
+  name String
+  DayPlan DayPlan [not null]
+  orders Order [not null]
+  samples Sample [not null]
+  location Location [not null]
+  role String [not null]
+  Attendance Attendance [not null]
+}
+
+Table Attendance {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user_id String [not null]
+  attendance_date String
+  time_in String
+  time_out String
+  picture String
+  user User [not null]
+}
+
+Table Location {
+  id Int [pk, increment]
+  user_id String [not null]
+  location_latitude String [not null]
+  location_longitude String [not null]
+  timestamp DateTime [default: `now()`, not null]
+  user User [not null]
+}
+
+Table Customer {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  name String
+  type String
+  createdBy String
+  contact_number String
+  address String
+  orders Order [not null]
+  samples Sample [not null]
+}
+
+Table Product {
+  id Int [pk, increment]
+  product_name String
+  product_weight String
+  category String
+  product_price Float
+  mfgDate String
+  expDate String
+  order Order [not null]
+}
+
+Table Order {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  retailer_id Int [not null]
+  user_id String [not null]
+  order_date DateTime [not null]
+  order_amount Float [not null]
+  productId Int [not null]
+  product Product [not null]
+  customer Customer [not null]
+  user User [not null]
+}
+
+Table Sample {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  customer_id Int [not null]
+  user_id String [not null]
+  sample_date DateTime [not null]
+  product_name String [not null]
+  quantity Int [not null]
+  customer Customer [not null]
+  user User [not null]
+}
+
+Table DayPlan {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user_id String [not null]
+  task_name String
+  task_details String
+  task_status String
+  remarks String
+  assigned_by String
+  user User [not null]
+}
+
+Ref: Attendance.user_id > User.id
+
+Ref: Location.user_id > User.id
+
+Ref: Order.productId > Product.id
+
+Ref: Order.retailer_id > Customer.id
+
+Ref: Order.user_id > User.id
+
+Ref: Sample.customer_id > Customer.id
+
+Ref: Sample.user_id > User.id
+
+Ref: DayPlan.user_id > User.id
