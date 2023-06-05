@@ -69,7 +69,7 @@ Table Order {
   updatedAt DateTime [not null]
   retailer_id Int [not null]
   user_id String [not null]
-  order_date DateTime [not null]
+  order_date DateTime [default: `now()`, not null]
   order_amount Float [not null]
   productId Int [not null]
   product Product [not null]
