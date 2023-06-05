@@ -10,10 +10,10 @@ export class User extends BaseModel {
   email: string;
 
   @Field(() => String, { nullable: true })
-  firstname?: string;
+  name?: string;
 
   @Field(() => String, { nullable: true })
-  lastname?: string;
+  mobile_number?: string;
 
   @Field(() => String)
   role: string;

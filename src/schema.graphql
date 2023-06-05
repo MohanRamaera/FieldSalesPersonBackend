@@ -239,9 +239,9 @@ type User {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   email: String!
-  firstname: String
   id: ID!
-  lastname: String
+  mobile_number: String
+  name: String
   role: String!
 
   """Identifies the date and time when the object was last updated."""

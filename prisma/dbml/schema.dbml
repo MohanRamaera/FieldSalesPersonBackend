@@ -8,6 +8,7 @@ Table User {
   updatedAt DateTime [not null]
   email String [unique, not null]
   password String [not null]
+  mobile_number String
   name String
   DayPlan DayPlan [not null]
   orders Order [not null]
