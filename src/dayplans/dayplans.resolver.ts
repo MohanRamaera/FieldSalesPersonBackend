@@ -21,6 +21,7 @@ export class DayplansResolver {
     return this.dayplansService.create(user.id, createDayplanInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Query(() => [Dayplan], { name: 'dayplans' })
   findAll(@UserEntity() user: User) {
     return this.dayplansService.findAll(user.id);

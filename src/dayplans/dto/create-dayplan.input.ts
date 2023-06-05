@@ -2,15 +2,14 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateDayplanInput {
-  @Field()
+  @Field({ nullable: true })
   task_name?: string;
-  @Field()
+  @Field({ nullable: true })
   task_details?: string;
-  @Field()
+  @Field({ nullable: true })
   task_status?: string;
-  @Field()
+  @Field({ nullable: true })
   remarks?: string;
-
   @Field()
   user_id?: string;
 }

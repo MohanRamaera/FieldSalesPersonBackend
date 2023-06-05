@@ -8,8 +8,8 @@ export class CreateCustomerInput {
   type?: string;
   @Field()
   createdBy?: string;
-  @Field()
+  @Field({ nullable: true })
   contact_number?: string;
-  @Field()
+  @Field({ nullable: true })
   address?: string;
 }

@@ -10,7 +10,8 @@ export class Dayplan {
   task_status: string;
   @Field()
   remarks: string;
-
+  @Field()
+  id?: number;
   @Field()
   assignedBy?: string;
 }

@@ -84,6 +84,7 @@ scalar DateTime
 
 type Dayplan {
   assignedBy: String
+  id: Int
   remarks: String!
   task_details: String!
   task_name: String!
@@ -102,6 +103,7 @@ A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 scalar JWT
 
 type Location {
+  id: Int
   location_latitude: String!
   location_longitude: String!
   user_id: String!
@@ -137,6 +139,7 @@ type Mutation {
 }
 
 type Order {
+  id: Int
   order_amount: Int!
   order_date: String!
   productId: Int!
