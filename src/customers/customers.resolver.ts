@@ -5,11 +5,14 @@ import { CreateCustomerInput } from './dto/create-customer.input';
 import { UpdateCustomerInput } from './dto/update-customer.input';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { User } from '@prisma/client';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
 
 @Resolver(() => Customer)
 export class CustomersResolver {
   constructor(private readonly customersService: CustomersService) {}
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Customer)
   createCustomer(
     @UserEntity() user: User,

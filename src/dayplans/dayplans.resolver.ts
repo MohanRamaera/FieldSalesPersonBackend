@@ -5,11 +5,14 @@ import { CreateDayplanInput } from './dto/create-dayplan.input';
 import { UpdateDayplanInput } from './dto/update-dayplan.input';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { User } from '@prisma/client';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
 
 @Resolver(() => Dayplan)
 export class DayplansResolver {
   constructor(private readonly dayplansService: DayplansService) {}
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Dayplan)
   createDayplan(
     @UserEntity() user: User,

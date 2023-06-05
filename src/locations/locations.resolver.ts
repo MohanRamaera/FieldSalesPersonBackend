@@ -6,11 +6,14 @@ import { UpdateLocationInput } from './dto/update-location.input';
 import { User } from '@prisma/client';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { FindLocationInput } from './dto/find-loaction.input';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
 
 @Resolver(() => Location)
 export class LocationsResolver {
   constructor(private readonly locationsService: LocationsService) {}
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Location)
   createLocation(
     @UserEntity() user: User,
