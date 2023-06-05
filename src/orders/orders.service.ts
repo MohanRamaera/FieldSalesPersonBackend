@@ -7,9 +7,12 @@ import { PrismaService } from 'nestjs-prisma';
 export class OrdersService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: CreateOrderInput) {
+  create(userId, data: CreateOrderInput) {
     const orderDetals = this.prisma.order.create({
-      data,
+      data: {
+        ...data,
+        user_id: userId,
+      },
     });
     return orderDetals;
   }

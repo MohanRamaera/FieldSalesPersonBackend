@@ -5,6 +5,8 @@ export class Customer {
   @Field()
   name?: string;
   @Field()
+  id?: number;
+  @Field()
   type?: string;
   @Field()
   createdBy?: string;

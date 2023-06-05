@@ -41,12 +41,11 @@ input CreateCustomerInput {
 }
 
 input CreateDayplanInput {
-  assignedBy: String
   remarks: String
   task_details: String
   task_name: String
   task_status: String
-  userId: String
+  user_id: String
 }
 
 input CreateLocationInput {
@@ -56,10 +55,8 @@ input CreateLocationInput {
 
 input CreateOrderInput {
   order_amount: Int!
-  order_date: String!
   productId: Int!
   retailer_id: Int!
-  user_id: String!
 }
 
 input CreateProductInput {
@@ -75,6 +72,7 @@ type Customer {
   address: String
   contact_number: String
   createdBy: String
+  id: Int
   name: String
   type: String
 }
@@ -212,6 +210,7 @@ input UpdateDayplanInput {
   task_name: String!
   task_status: String!
   userId: String
+  user_id: String
 }
 
 input UpdateLocationInput {

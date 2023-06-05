@@ -6,6 +6,9 @@ export class Location {
   user_id: string;
 
   @Field()
+  id?: number;
+
+  @Field()
   location_latitude: string;
 
   @Field()

@@ -3,14 +3,24 @@ import { OrdersService } from './orders.service';
 import { Order } from './entities/order.entity';
 import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
+import { UserEntity } from 'src/common/decorators/user.decorator';
+import { User } from '@prisma/client';
 
 @Resolver(() => Order)
 export class OrdersResolver {
   constructor(private readonly ordersService: OrdersService) {}
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Order)
-  createOrder(@Args('data') data: CreateOrderInput) {
-    return this.ordersService.create(data);
+  createOrder(
+    @UserEntity()
+    user: User,
+    @Args('data')
+    data: CreateOrderInput
+  ) {
+    return this.ordersService.create(user.id, data);
   }
 
   // @Query(() => [Order], { name: 'orders' })

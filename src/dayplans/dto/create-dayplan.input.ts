@@ -10,9 +10,7 @@ export class CreateDayplanInput {
   task_status?: string;
   @Field()
   remarks?: string;
-  @Field()
-  assignedBy?: string;
 
   @Field()
-  userId?: string;
+  user_id?: string;
 }

@@ -8,6 +8,9 @@ export class Order {
   @Field(() => String)
   user_id: string;
 
+  @Field()
+  id?: number;
+
   @Field(() => String)
   order_date: string;
 

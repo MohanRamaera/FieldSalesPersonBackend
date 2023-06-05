@@ -11,7 +11,7 @@ export class DayplansService {
       data: {
         ...data,
         assigned_by: userId,
-        user_id: data.userId,
+        user_id: data.user_id,
       },
     });
   }
