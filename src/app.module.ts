@@ -26,10 +26,10 @@ import { LocationsModule } from './locations/locations.module';
       prismaServiceOptions: {
         middlewares: [
           // configure your prisma middleware
-          loggingMiddleware({
-            logger: new Logger('PrismaMiddleware'),
-            logLevel: 'log',
-          }),
+          // loggingMiddleware({
+          //   logger: new Logger('PrismaMiddleware'),
+          //   logLevel: 'log',
+          // }),
         ],
       },
     }),
