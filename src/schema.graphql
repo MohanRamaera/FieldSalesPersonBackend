@@ -85,7 +85,7 @@ scalar DateTime
 type Dayplan {
   assignedBy: String
   id: Int
-  remarks: String!
+  remarks: String
   task_details: String!
   task_name: String!
   task_status: String!

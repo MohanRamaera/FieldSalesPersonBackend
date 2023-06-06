@@ -2,16 +2,16 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Dayplan {
-  @Field()
+  @Field({ nullable: true })
   task_name: string;
-  @Field()
+  @Field({ nullable: true })
   task_details: string;
-  @Field()
+  @Field({ nullable: true })
   task_status: string;
-  @Field()
+  @Field({ nullable: true })
   remarks: string;
   @Field()
   id?: number;
-  @Field()
+  @Field({ nullable: true })
   assignedBy?: string;
 }
