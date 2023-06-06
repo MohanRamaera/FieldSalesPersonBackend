@@ -4,15 +4,17 @@ import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 @InputType()
 export class UpdateAttendanceInput extends PartialType(CreateAttendanceInput) {
   @Field(() => Int)
-  id: number;
+  id?: number;
+  @Field()
+  user_id?: string;
 
   @Field()
-  attendance_date: string;
+  attendance_date?: string;
 
   @Field()
-  time_in: string;
+  time_in?: string;
   @Field()
-  time_out: string;
+  time_out?: string;
   @Field()
-  picture: string;
+  picture?: string;
 }

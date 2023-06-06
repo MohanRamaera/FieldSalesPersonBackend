@@ -3,11 +3,11 @@
 # ------------------------------------------------------
 
 type Attendance {
-  attendance_dat: String!
-  picture: String!
-  time_in: String!
-  time_out: String!
-  user_id: String!
+  attendance_date: String
+  id: String
+  picture: String
+  time_in: String
+  time_out: String
 }
 
 type Auth {
@@ -86,9 +86,9 @@ type Dayplan {
   assignedBy: String
   id: Int
   remarks: String
-  task_details: String!
-  task_name: String!
-  task_status: String!
+  task_details: String
+  task_name: String
+  task_status: String
 }
 
 input FindLocationInput {
@@ -188,11 +188,11 @@ type Token {
 }
 
 input UpdateAttendanceInput {
-  attendance_date: String!
-  id: Int!
-  picture: String!
-  time_in: String!
-  time_out: String!
+  attendance_date: String
+  id: Int
+  picture: String
+  time_in: String
+  time_out: String
   user_id: String
 }
 

@@ -31,12 +31,15 @@ export class AttendancesService {
     });
   }
 
-  update(id: number, data: UpdateAttendanceInput) {
+  update(userId, data: UpdateAttendanceInput) {
     return this.prisma.attendance.update({
       where: {
-        id,
+        id: data.id,
       },
-      data,
+      data: {
+        ...data,
+        user_id: userId,
+      },
     });
   }
 

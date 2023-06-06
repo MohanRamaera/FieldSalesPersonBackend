@@ -32,12 +32,14 @@ export class AttendancesResolver {
     return this.attendancesService.findOne(id);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Attendance)
-  updateAttendance(@Args('data') updateAttendanceInput: UpdateAttendanceInput) {
-    return this.attendancesService.update(
-      updateAttendanceInput.id,
-      updateAttendanceInput
-    );
+  updateAttendance(
+    @UserEntity() user: User,
+    @Args('data')
+    data: UpdateAttendanceInput
+  ) {
+    return this.attendancesService.update(user.id, data);
   }
 
   @Mutation(() => Attendance)
