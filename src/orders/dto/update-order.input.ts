@@ -4,14 +4,11 @@ import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 @InputType()
 export class UpdateOrderInput extends PartialType(CreateOrderInput) {
   @Field(() => Number)
-  retailer_id: number;
-
-  @Field(() => String)
-  user_id: string;
+  retailer_id?: number;
 
   @Field(() => Number)
-  order_amount: number;
+  order_amount?: number;
 
   @Field(() => Number)
-  productId: number;
+  productId?: number;
 }
