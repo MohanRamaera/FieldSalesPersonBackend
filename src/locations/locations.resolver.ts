@@ -27,7 +27,7 @@ export class LocationsResolver {
     return this.locationsService.findAll();
   }
 
-  @Query(() => Location, { name: 'location' })
+  @Query(() => Location, { name: 'locationByDay' })
   findLocationByDay(@Args('data') findlocationinput: FindLocationInput) {
     return this.locationsService.findLocationByDay(findlocationinput);
   }

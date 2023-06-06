@@ -3,7 +3,7 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 @InputType()
 export class FindLocationInput {
   @Field()
-  id: number;
+  user_id: string;
 
   @Field()
   locationStartDate: Date;
