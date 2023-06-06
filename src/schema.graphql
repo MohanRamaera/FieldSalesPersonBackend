@@ -92,9 +92,9 @@ type Dayplan {
 }
 
 input FindLocationInput {
-  id: Int!
   locationEndDate: DateTime!
   locationStartDate: DateTime!
+  user_id: String!
 }
 
 """
@@ -103,7 +103,6 @@ A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 scalar JWT
 
 type Location {
-  id: Int
   location_latitude: String!
   location_longitude: String!
   user_id: String!
@@ -128,12 +127,14 @@ type Mutation {
   removeCustomer(id: Int!): Customer!
   removeDayplan(id: Int!): Dayplan!
   removeLocation(id: Int!): Location!
+  removeOrder(id: Int!): Order!
   removeProduct(id: Int!): Product!
   signup(data: SignupInput!): Auth!
   updateAttendance(data: UpdateAttendanceInput!): Attendance!
   updateCustomer(data: UpdateCustomerInput!): Customer!
   updateDayplan(data: UpdateDayplanInput!): Dayplan!
   updateLocation(updateLocationInput: UpdateLocationInput!): Location!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   updateUser(data: UpdateUserInput!): User!
 }
@@ -166,9 +167,11 @@ type Query {
   dayplans: [Dayplan!]!
   hello(name: String!): String!
   helloWorld: String!
-  location(data: FindLocationInput!): Location!
+  locationByDay(data: FindLocationInput!): Location!
   locations: [Location!]!
   me: User!
+  order(id: Int!): Order!
+  orders: [Order!]!
   product(id: Int!): Product!
   products: [Product!]!
 }
@@ -222,6 +225,13 @@ input UpdateLocationInput {
   id: Int!
   location_latitude: String
   location_longitude: String
+}
+
+input UpdateOrderInput {
+  id: Int
+  order_amount: Int
+  productId: Int
+  retailer_id: Int
 }
 
 input UpdateProductInput {
