@@ -12,19 +12,20 @@ generator dbml {
 }
 
 model User {
-  id            String       @id @default(cuid())
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  email         String       @unique
-  password      String
-  mobile_number String?
-  name          String?
-  DayPlan       DayPlan[]
-  orders        Order[]
-  samples       Sample[]
-  location      Location[]
-  role          String
-  Attendance    Attendance[]
+  id                 String       @id @default(cuid())
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  email              String       @unique
+  password           String
+  mobile_number      String?
+  name               String?
+  DayPlan            DayPlan[]
+  orders             Order[]
+  samples            Sample[]
+  location           Location[]
+  role               String
+  user_profile_photo String?
+  Attendance         Attendance[]
 }
 
 model Attendance {

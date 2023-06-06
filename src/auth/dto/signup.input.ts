@@ -8,6 +8,12 @@ export class SignupInput {
   email: string;
 
   @Field()
+  name: string;
+
+  @Field()
+  mobile_number: string;
+
+  @Field()
   role: string;
 
   @Field()

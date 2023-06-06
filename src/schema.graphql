@@ -175,6 +175,8 @@ type Query {
 
 input SignupInput {
   email: String!
+  mobile_number: String!
+  name: String!
   password: String!
   role: String!
 }
