@@ -5,9 +5,9 @@ export class Location {
   @Field()
   user_id: string;
 
-  @Field(() => Number, { nullable: true })
-  location_latitude: number;
+  @Field(() => String, { nullable: true })
+  location_latitude: string;
 
-  @Field(() => Number, { nullable: true })
-  location_longitude: number;
+  @Field(() => String, { nullable: true })
+  location_longitude: string;
 }
