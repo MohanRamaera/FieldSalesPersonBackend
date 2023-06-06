@@ -15,6 +15,7 @@ Table User {
   samples Sample [not null]
   location Location [not null]
   role String [not null]
+  user_profile_photo String
   Attendance Attendance [not null]
 }
 

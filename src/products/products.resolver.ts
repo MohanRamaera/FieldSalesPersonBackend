@@ -24,9 +24,7 @@ export class ProductsResolver {
   }
 
   @Mutation(() => Product)
-  updateProduct(
-    @Args('updateProductInput') updateProductInput: UpdateProductInput
-  ) {
+  updateProduct(@Args('data') updateProductInput: UpdateProductInput) {
     return this.productsService.update(
       updateProductInput.id,
       updateProductInput

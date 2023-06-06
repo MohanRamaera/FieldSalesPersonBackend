@@ -24,6 +24,7 @@ export class LocationsService {
   findLocationByDay(locationInput: FindLocationInput) {
     return this.prisma.location.findMany({
       where: {
+        // timestamp: locationInput.locationStartDate,
         AND: [
           { user_id: locationInput.user_id },
           {

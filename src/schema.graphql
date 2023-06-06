@@ -92,9 +92,9 @@ type Dayplan {
 }
 
 input FindLocationInput {
-  locationEndDate: DateTime!
-  locationStartDate: DateTime!
-  user_id: String!
+  locationEndDate: DateTime
+  locationStartDate: DateTime
+  user_id: String
 }
 
 """
@@ -103,8 +103,8 @@ A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 scalar JWT
 
 type Location {
-  location_latitude: String!
-  location_longitude: String!
+  location_latitude: Int
+  location_longitude: Int
   user_id: String!
 }
 
@@ -135,7 +135,7 @@ type Mutation {
   updateDayplan(data: UpdateDayplanInput!): Dayplan!
   updateLocation(updateLocationInput: UpdateLocationInput!): Location!
   updateOrder(updateOrderInput: UpdateOrderInput!): Order!
-  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateProduct(data: UpdateProductInput!): Product!
   updateUser(data: UpdateUserInput!): User!
 }
 
@@ -159,6 +159,7 @@ type Product {
 }
 
 type Query {
+  FindlocationByDay(data: FindLocationInput!): [Location!]!
   attendance(id: Int!): Attendance!
   attendances: [Attendance!]!
   customer(id: Int!): Customer!
@@ -167,7 +168,6 @@ type Query {
   dayplans: [Dayplan!]!
   hello(name: String!): String!
   helloWorld: String!
-  locationByDay(data: FindLocationInput!): Location!
   locations: [Location!]!
   me: User!
   order(id: Int!): Order!
@@ -178,8 +178,8 @@ type Query {
 
 input SignupInput {
   email: String!
-  mobile_number: String!
-  name: String!
+  mobile_number: String
+  name: String
   password: String!
   role: String!
 }
@@ -245,8 +245,9 @@ input UpdateProductInput {
 }
 
 input UpdateUserInput {
-  firstname: String
-  lastname: String
+  mobile_number: String
+  name: String
+  user_profile_photo: String
 }
 
 type User {

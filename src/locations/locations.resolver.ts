@@ -27,9 +27,9 @@ export class LocationsResolver {
     return this.locationsService.findAll();
   }
 
-  @Query(() => Location, { name: 'locationByDay' })
-  findLocationByDay(@Args('data') findlocationinput: FindLocationInput) {
-    return this.locationsService.findLocationByDay(findlocationinput);
+  @Query(() => [Location], { name: 'FindlocationByDay' })
+  findLocationByDay(@Args('data') data: FindLocationInput) {
+    return this.locationsService.findLocationByDay(data);
   }
 
   @Mutation(() => Location)

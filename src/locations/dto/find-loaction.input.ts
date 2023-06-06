@@ -1,13 +1,13 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, GraphQLISODateTime } from '@nestjs/graphql';
 
 @InputType()
 export class FindLocationInput {
   @Field()
-  user_id: string;
+  user_id?: string;
 
-  @Field()
-  locationStartDate: Date;
+  @Field(() => GraphQLISODateTime)
+  locationStartDate?: Date;
 
-  @Field()
-  locationEndDate: Date;
+  @Field(() => GraphQLISODateTime)
+  locationEndDate?: Date;
 }
