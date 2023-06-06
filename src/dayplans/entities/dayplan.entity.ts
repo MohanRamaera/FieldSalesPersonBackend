@@ -12,6 +12,6 @@ export class Dayplan {
   remarks: string;
   @Field()
   id?: number;
-  @Field({ nullable: true })
-  assignedBy?: string;
+  @Field(() => String, { nullable: true })
+  assigned_by: string;
 }
