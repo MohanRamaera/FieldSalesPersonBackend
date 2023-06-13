@@ -17,6 +17,7 @@ import { ProductsModule } from './products/products.module';
 import { AttendancesModule } from './attendances/attendances.module';
 import { DayplansModule } from './dayplans/dayplans.module';
 import { LocationsModule } from './locations/locations.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { LocationsModule } from './locations/locations.module';
     AttendancesModule,
     DayplansModule,
     LocationsModule,
+    MediaModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
