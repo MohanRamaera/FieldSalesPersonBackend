@@ -45,4 +45,8 @@ export class UsersService {
       where: { id: userId },
     });
   }
+
+  findAll() {
+    return this.prisma.user.findMany({});
+  }
 }

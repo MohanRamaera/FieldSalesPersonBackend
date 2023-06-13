@@ -50,6 +50,12 @@ export class UsersResolver {
     );
   }
 
+  @UseGuards(GqlAuthGuard)
+  @Query(() => [User], { name: 'users' })
+  findAll() {
+    return this.usersService.findAll();
+  }
+
   // @ResolveField('posts')
   // posts(@Parent() author: User) {
   //   return this.prisma.user.findUnique({ where: { id: author.id } }).posts();
