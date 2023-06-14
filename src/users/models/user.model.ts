@@ -18,6 +18,9 @@ export class User extends BaseModel {
   @Field(() => String)
   role: string;
 
+  @Field(() => String)
+  user_profile_photo: string;
+
   @HideField()
   password: string;
 }
