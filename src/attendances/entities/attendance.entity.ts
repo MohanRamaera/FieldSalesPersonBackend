@@ -16,4 +16,7 @@ export class Attendance {
 
   @Field({ nullable: true })
   picture: string;
+
+  @Field({ nullable: true })
+  user_id: string;
 }
