@@ -15,10 +15,10 @@ export class User extends BaseModel {
   @Field(() => String, { nullable: true })
   mobile_number?: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   role: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   user_profile_photo: string;
 
   @HideField()
