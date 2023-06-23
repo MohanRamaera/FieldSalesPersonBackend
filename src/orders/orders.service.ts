@@ -28,6 +28,8 @@ export class OrdersService {
       data: {
         productId: data1.productId,
         quantity: data1.quantity,
+        customer_id: data1.customer_id,
+        delivery_date: data1.delivery_date,
       },
     });
     return order;

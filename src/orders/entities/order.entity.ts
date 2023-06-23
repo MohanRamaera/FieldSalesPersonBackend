@@ -5,15 +5,18 @@ export class Order {
   @Field()
   id?: number;
 
+  @Field()
+  customer_id?: number;
+
   @Field(() => String)
   order_date: string;
 
-  @Field(() => Number)
-  order_amount: number;
+  @Field(() => String)
+  delivery_date: string;
 
-  @Field(() => [Number])
+  @Field(() => [Int])
   productId: number[];
 
-  @Field(() => [Number])
+  @Field(() => [Int])
   quantity: number[];
 }

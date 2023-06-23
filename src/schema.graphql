@@ -55,6 +55,8 @@ input CreateLocationInput {
 }
 
 input CreateOrderInput {
+  customer_id: Int!
+  delivery_date: String!
   productId: [Int!]!
   quantity: [Int!]!
 }
@@ -139,8 +141,9 @@ type Mutation {
 }
 
 type Order {
+  customer_id: Int
+  delivery_date: String!
   id: Int
-  order_amount: Int!
   order_date: String!
   productId: [Int!]!
   quantity: [Int!]!
