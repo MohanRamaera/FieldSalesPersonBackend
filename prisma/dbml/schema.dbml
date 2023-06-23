@@ -11,7 +11,6 @@ Table User {
   mobile_number String
   name String
   DayPlan DayPlan [not null]
-  orders Order [not null]
   samples Sample [not null]
   location Location [not null]
   role String [not null]
@@ -49,7 +48,6 @@ Table Customer {
   createdBy String
   contact_number String
   address String
-  orders Order [not null]
   samples Sample [not null]
 }
 
@@ -61,21 +59,16 @@ Table Product {
   product_price Float
   mfgDate String
   expDate String
-  order Order [not null]
 }
 
 Table Order {
   id Int [pk, increment]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [not null]
-  retailer_id Int [not null]
-  user_id String [not null]
   order_date DateTime [default: `now()`, not null]
-  order_amount Float [not null]
-  productId Int [not null]
-  product Product [not null]
-  customer Customer [not null]
-  user User [not null]
+  order_amount Float
+  productId Int[] [not null]
+  quantity Int[] [not null]
 }
 
 Table Sample {
@@ -107,12 +100,6 @@ Table DayPlan {
 Ref: Attendance.user_id > User.id
 
 Ref: Location.user_id > User.id
-
-Ref: Order.productId > Product.id
-
-Ref: Order.retailer_id > Customer.id
-
-Ref: Order.user_id > User.id
 
 Ref: Sample.customer_id > Customer.id
 

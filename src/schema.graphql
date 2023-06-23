@@ -8,6 +8,7 @@ type Attendance {
   picture: String
   time_in: String
   time_out: String
+  user_id: String
 }
 
 type Auth {
@@ -54,9 +55,8 @@ input CreateLocationInput {
 }
 
 input CreateOrderInput {
-  order_amount: Int!
-  productId: Int!
-  retailer_id: Int!
+  productId: [Int!]!
+  quantity: [Int!]!
 }
 
 input CreateProductInput {
@@ -134,7 +134,6 @@ type Mutation {
   updateCustomer(data: UpdateCustomerInput!): Customer!
   updateDayplan(data: UpdateDayplanInput!): Dayplan!
   updateLocation(updateLocationInput: UpdateLocationInput!): Location!
-  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
   updateProduct(data: UpdateProductInput!): Product!
   updateUser(data: UpdateUserInput!): User!
 }
@@ -143,9 +142,8 @@ type Order {
   id: Int
   order_amount: Int!
   order_date: String!
-  productId: Int!
-  retailer_id: Int!
-  user_id: String!
+  productId: [Int!]!
+  quantity: [Int!]!
 }
 
 type Product {
@@ -228,13 +226,6 @@ input UpdateLocationInput {
   location_longitude: String
 }
 
-input UpdateOrderInput {
-  id: Int
-  order_amount: Int
-  productId: Int
-  retailer_id: Int
-}
-
 input UpdateProductInput {
   category: String!
   expDate: String!
@@ -258,8 +249,9 @@ type User {
   id: ID!
   mobile_number: String
   name: String
-  role: String!
+  role: String
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+  user_profile_photo: String
 }

@@ -7,14 +7,30 @@ import { PrismaService } from 'nestjs-prisma';
 export class OrdersService {
   constructor(private prisma: PrismaService) {}
 
-  create(userId, data: CreateOrderInput) {
-    const orderDetals = this.prisma.order.create({
+  async create(data1: CreateOrderInput) {
+    // const productIds = [];
+    // data1.productId.map(async (productid) => {
+    //   const orderProducts = [];
+    //   const products = await this.prisma.product.findUnique({
+    //     where: {
+    //       id: productid,
+    //     },
+    //   });
+    //   if (products) {
+    //     orderProducts.push(products);
+    //     productIds.push(products.id);
+    //   }
+    //   console.log(orderProducts);
+    //   console.log(productIds);
+    // });
+
+    const order = await this.prisma.order.create({
       data: {
-        ...data,
-        user_id: userId,
+        productId: data1.productId,
+        quantity: data1.quantity,
       },
     });
-    return orderDetals;
+    return order;
   }
 
   findAll() {
@@ -29,14 +45,14 @@ export class OrdersService {
     });
   }
 
-  update(id: number, updateOrderInput: UpdateOrderInput) {
-    return this.prisma.order.update({
-      where: {
-        id,
-      },
-      data: updateOrderInput,
-    });
-  }
+  // update(id: number, updateOrderInput: UpdateOrderInput) {
+  //   return this.prisma.order.update({
+  //     where: {
+  //       id,
+  //     },
+  //     data: updateOrderInput,
+  //   });
+  // }
 
   remove(id: number) {
     return this.prisma.order.delete({

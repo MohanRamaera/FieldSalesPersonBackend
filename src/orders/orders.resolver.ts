@@ -20,7 +20,7 @@ export class OrdersResolver {
     @Args('data')
     data: CreateOrderInput
   ) {
-    return this.ordersService.create(user.id, data);
+    return this.ordersService.create(data);
   }
 
   @Query(() => [Order], { name: 'orders' })
@@ -33,10 +33,10 @@ export class OrdersResolver {
     return this.ordersService.findOne(id);
   }
 
-  @Mutation(() => Order)
-  updateOrder(@Args('updateOrderInput') updateOrderInput: UpdateOrderInput) {
-    return this.ordersService.update(updateOrderInput.id, updateOrderInput);
-  }
+  // @Mutation(() => Order)
+  // updateOrder(@Args('updateOrderInput') updateOrderInput: UpdateOrderInput) {
+  //   return this.ordersService.update(updateOrderInput.id, updateOrderInput);
+  // }
 
   @Mutation(() => Order)
   removeOrder(@Args('id', { type: () => Int }) id: number) {

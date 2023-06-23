@@ -2,12 +2,6 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Order {
-  @Field(() => Number)
-  retailer_id: number;
-
-  @Field(() => String)
-  user_id: string;
-
   @Field()
   id?: number;
 
@@ -17,6 +11,9 @@ export class Order {
   @Field(() => Number)
   order_amount: number;
 
-  @Field(() => Number)
-  productId: number;
+  @Field(() => [Number])
+  productId: number[];
+
+  @Field(() => [Number])
+  quantity: number[];
 }

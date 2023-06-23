@@ -11,8 +11,6 @@ export class ProductsService {
     const productCreated = this.prisma.product.create({
       data,
     });
-
-    console.log('---->>', productCreated);
     return productCreated;
   }
 

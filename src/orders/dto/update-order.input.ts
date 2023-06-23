@@ -11,7 +11,4 @@ export class UpdateOrderInput extends PartialType(CreateOrderInput) {
 
   @Field(() => Number)
   order_amount?: number;
-
-  @Field(() => Number)
-  productId?: number;
 }
