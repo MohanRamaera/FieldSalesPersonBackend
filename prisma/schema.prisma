@@ -58,8 +58,11 @@ model Customer {
   createdBy      String?
   contact_number String?
   address        String?
+  GSTNO          String?
+  metaData       Json?
+
   // orders         Order[]
-  samples        Sample[]
+  samples Sample[]
 }
 
 model Product {

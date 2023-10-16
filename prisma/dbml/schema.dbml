@@ -48,6 +48,8 @@ Table Customer {
   createdBy String
   contact_number String
   address String
+  GSTNO String
+  metaData Json
   samples Sample [not null]
 }
 

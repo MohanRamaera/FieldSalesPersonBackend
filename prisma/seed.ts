@@ -1,54 +1,45 @@
 import { PrismaClient } from '@prisma/client';
-
+import * as fs from 'fs';
+import * as csv from 'csv-parser';
 const prisma = new PrismaClient();
 
-async function main() {
-  await prisma.user.deleteMany();
-  await prisma.post.deleteMany();
+const SeedCommand = async () => {
+  const filePath =
+    '/Users/apple/Documents/Field Sales Person Backend/prisma/SS&DB.csv';
+  const dataset = [];
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on('data', (data) => dataset.push(data));
 
+  await prisma.$connect();
   console.log('Seeding...');
 
-  const user1 = await prisma.user.create({
-    data: {
-      email: 'lisa@simpson.com',
-      firstname: 'Lisa',
-      lastname: 'Simpson',
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
-      role: 'USER',
-      posts: {
-        create: {
-          title: 'Join us for Prisma Day 2019 in Berlin',
-          content: 'https://www.prisma.io/day/',
-          published: true,
+  for (const row of dataset) {
+    const feedCustomerData = await prisma.customer.create({
+      data: {
+        name: row.Name_of_Business,
+        type: row.Firm_Type,
+        contact_number: row.Mobile_No,
+        address: row.Address_of_Business,
+        GSTNO: row.GST_No,
+        metaData: {
+          Terriotory: row.Territory,
+          Distribution_Design: row.Distribution_Design,
+          Zone_Incharge: row.Zone_Incharge,
+          Proprietor: row.Name_Of_the_Proprietor,
+          PAN_No: row.PAN_No,
+          Year_of_Establishment: row.Year_of_Establishment,
+          State: row.State,
         },
       },
-    },
-  });
-  const user2 = await prisma.user.create({
-    data: {
-      email: 'bart@simpson.com',
-      firstname: 'Bart',
-      lastname: 'Simpson',
-      role: 'ADMIN',
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
-      posts: {
-        create: [
-          {
-            title: 'Subscribe to GraphQL Weekly for community news',
-            content: 'https://graphqlweekly.com/',
-            published: true,
-          },
-          {
-            title: 'Follow Prisma on Twitter',
-            content: 'https://twitter.com/prisma',
-            published: false,
-          },
-        ],
-      },
-    },
-  });
+    });
+  }
+};
 
-  console.log({ user1, user2 });
+async function main() {
+  const check = await SeedCommand();
+
+  console.log('Seeding...');
 }
 
 main()

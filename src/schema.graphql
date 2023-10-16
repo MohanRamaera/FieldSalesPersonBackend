@@ -246,6 +246,8 @@ input UpdateUserInput {
 }
 
 type User {
+  agencyCode: String
+
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   email: String!
